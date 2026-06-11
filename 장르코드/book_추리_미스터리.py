@@ -1,3 +1,5 @@
+
+
 import os
 import glob
 import time
@@ -11,13 +13,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DOWNLOAD_DIR = os.path.join(BASE_DIR, "../data")
+DOWNLOAD_DIR = os.path.join(BASE_DIR, "data")
 
 if not os.path.exists(DOWNLOAD_DIR):
     os.makedirs(DOWNLOAD_DIR)
 
 # 추리/미스터리 전용 파일명 설정
-FINAL_CSV_PATH = os.path.join(DOWNLOAD_DIR, "yes24_steadyseller_판타지.csv")
+FINAL_CSV_PATH = os.path.join(DOWNLOAD_DIR, "yes24_steadyseller_추리_미스터리.csv")
 
 if os.path.exists(FINAL_CSV_PATH):
     os.remove(FINAL_CSV_PATH)
@@ -43,7 +45,7 @@ service = ChromeService(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
 # [접속] 제공해주신 추리/미스터리 장르 링크
-driver.get("https://www.yes24.com/product/category/steadyseller?pageNumber=1&pageSize=24&categoryNumber=001001046011003")
+driver.get("https://www.yes24.com/product/category/steadyseller?pageNumber=1&pageSize=24&categoryNumber=001001046011001")
 driver.implicitly_wait(4)
 
 # [설정] 120개씩 보기 변경
@@ -97,7 +99,7 @@ def append_excel_to_csv(downloaded_excel_path, target_csv_path, current_page):
 # 크롤링 반복 주행 (1페이지 ~ 7페이지 완주)
 # ==========================================
 page_index = 1
-total_pages = 6  
+total_pages = 7  # 7페이지까지 확실하게 설정
 
 while page_index <= total_pages:
     print("\n" + "=" * 50)
