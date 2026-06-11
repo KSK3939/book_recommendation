@@ -1,3 +1,5 @@
+
+#책권수가 너무 적어서 빼는 것이 나아보임 (아니면 다른 거랑 통합하든)
 import os
 import glob
 import time
@@ -11,13 +13,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DOWNLOAD_DIR = os.path.join(BASE_DIR, "data")
+DOWNLOAD_DIR = os.path.join(BASE_DIR, "../data")
 
 if not os.path.exists(DOWNLOAD_DIR):
     os.makedirs(DOWNLOAD_DIR)
 
-# 추리/미스터리 전용 파일명 설정
-FINAL_CSV_PATH = os.path.join(DOWNLOAD_DIR, "yes24_steadyseller_판타지.csv")
+#바꿀부분 명 바꾸기
+FINAL_CSV_PATH = os.path.join(DOWNLOAD_DIR, "yes24_steadyseller_무협.csv")
 
 if os.path.exists(FINAL_CSV_PATH):
     os.remove(FINAL_CSV_PATH)
@@ -42,11 +44,11 @@ chrome_options.add_experimental_option("prefs", prefs)
 service = ChromeService(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-# [접속] 제공해주신 추리/미스터리 장르 링크
-driver.get("https://www.yes24.com/product/category/steadyseller?pageNumber=1&pageSize=24&categoryNumber=001001046011003")
+# [접속] 모아야되는 링크 바꾸기
+driver.get("https://www.yes24.com/product/category/steadyseller?pageNumber=1&pageSize=24&categoryNumber=001001046011004")
 driver.implicitly_wait(4)
 
-# [설정] 120개씩 보기 변경
+
 try:
     pg_size_option = WebDriverWait(driver, 8).until(
         EC.element_to_be_clickable((By.XPATH, '//*[@id="pg_size"]/option[4]'))
@@ -97,7 +99,7 @@ def append_excel_to_csv(downloaded_excel_path, target_csv_path, current_page):
 # 크롤링 반복 주행 (1페이지 ~ 7페이지 완주)
 # ==========================================
 page_index = 1
-total_pages = 6  
+total_pages = 1 # 120으로 바꾸고 페이지수 체크해서 바꾸기
 
 while page_index <= total_pages:
     print("\n" + "=" * 50)

@@ -11,12 +11,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DOWNLOAD_DIR = os.path.join(BASE_DIR, "data")
+DOWNLOAD_DIR = os.path.join(BASE_DIR, "../data")
 
 if not os.path.exists(DOWNLOAD_DIR):
     os.makedirs(DOWNLOAD_DIR)
 
-FINAL_CSV_PATH = os.path.join(DOWNLOAD_DIR, "yes24_steadyseller_공포_스릴러.csv")
+FINAL_CSV_PATH = os.path.join(DOWNLOAD_DIR, "yes24_steadyseller_SF.csv")
 
 if os.path.exists(FINAL_CSV_PATH):
     os.remove(FINAL_CSV_PATH)
@@ -40,7 +40,7 @@ chrome_options.add_experimental_option("prefs", prefs)
 
 service = ChromeService(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
-driver.get("https://www.yes24.com/product/category/steadyseller?categoryNumber=001001046011002")
+driver.get("https://www.yes24.com/product/category/steadyseller?pageNumber=1&pageSize=120&categoryNumber=001001046011005")
 driver.implicitly_wait(4)
 
 # [120개씩 보기 변경]
