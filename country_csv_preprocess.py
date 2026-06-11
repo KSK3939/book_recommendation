@@ -26,7 +26,7 @@ import pandas as pd
 # df.to_csv('data_나라/yes24_steadyseller_러시아_정리.csv', index=False, encoding='utf-8-sig')
 
 # 프랑스
-df = pd.read_csv('data_나라/yes24_steadyseller_프랑스.csv')
+df = pd.read_csv('data_나라/원본데이터/yes24_steadyseller_프랑스.csv')
 
 df = df.dropna(subset=['설명'])
 df = pd.DataFrame(df['ISBN'])
