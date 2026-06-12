@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BookRecommendApp</class>
+ <widget class="QWidget" name="BookRecommendApp">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>520</width><height>700</height></rect>
+  </property>
+  <property name="windowTitle">
+   <string>YES24 도서 추천</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QWidget#BookRecommendApp {
+    background-color: #f4f6fa;
+}
+QWidget#header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e8eaf0;
+}
+QLabel#logoLabel {
+    font-size: 22px;
+    font-weight: bold;
+    color: #111111;
+    background-color: transparent;
+}
+QLabel#headerTitle {
+    font-size: 13px;
+    font-weight: bold;
+    color: #041242;
+    background-color: transparent;
+}
+QLabel#headerRight {
+    background-color: transparent;
+}
+QWidget#searchArea {
+    background-color: #041242;
+}
+QLabel#searchSubtitle {
+    color: #66BEFF;
+    font-size: 11px;
+    background-color: transparent;
+}
+QLabel#searchTitle {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: transparent;
+}
+QLineEdit#searchInput {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 13px;
+    color: #111111;
+    min-height: 30px;
+}
+QPushButton#searchBtn {
+    background-color: #EC1929;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 34px;
+    min-width: 64px;
+    padding: 0 14px;
+}
+QPushButton#searchBtn:hover { background-color: #c41522; }
+QWidget#filterCard {
+    background-color: #ffffff;
+    border: 1px solid #d8dce8;
+    border-radius: 8px;
+}
+QLabel#authorLabel, QLabel#countryLabel, QLabel#genreLabel {
+    font-size: 12px;
+    font-weight: bold;
+    color: #041242;
+    background-color: transparent;
+    min-width: 64px;
+}
+QLineEdit#authorInput {
+    background-color: #ffffff;
+    border: 1px solid #d0d5e0;
+    border-radius: 5px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: #222222;
+    min-height: 26px;
+}
+QComboBox#countryCombo {
+    background-color: #ffffff;
+    border: 1px solid #d0d5e0;
+    border-radius: 5px;
+    padding: 3px 8px;
+    font-size: 12px;
+    color: #222222;
+    min-height: 26px;
+    min-width: 120px;
+    max-width: 160px;
+}
+QCheckBox {
+    font-size: 12px;
+    color: #444444;
+    background-color: #f8f9fb;
+    border: 1px solid #d0d5e0;
+    border-radius: 12px;
+    padding: 4px 10px;
+    spacing: 0px;
+}
+QCheckBox:checked {
+    color: #0043FF;
+    background-color: #deeeff;
+    border: 1px solid #0080FF;
+    font-weight: bold;
+}
+QCheckBox::indicator { width: 0px; height: 0px; }
+QWidget#resultsBox {
+    background-color: #ffffff;
+    border: 1px solid #d8dce8;
+    border-radius: 8px;
+}
+QLabel#resultsLabel {
+    font-size: 12px;
+    font-weight: bold;
+    color: #041242;
+    background-color: transparent;
+}
+QLabel#resultCount {
+    font-size: 11px;
+    color: #888888;
+    background-color: transparent;
+}
+QLabel#emptyLabel {
+    color: #aaaaaa;
+    font-size: 13px;
+    background-color: transparent;
+}
+QPushButton#actionBtn {
+    background-color: #0080FF;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 36px;
+    min-width: 110px;
+    padding: 0 20px;
+}
+QPushButton#actionBtn:hover { background-color: #0066cc; }
+QScrollArea { border: none; background-color: transparent; }
+QScrollBar:vertical { width: 6px; background: transparent; }
+QScrollBar::handle:vertical { background: #d0d5e0; border-radius: 3px; min-height: 20px; }
+   </string>
+  </property>
+
+  <layout class="QVBoxLayout" name="rootLayout">
+   <property name="spacing"><number>0</number></property>
+   <property name="leftMargin"><number>0</number></property>
+   <property name="topMargin"><number>0</number></property>
+   <property name="rightMargin"><number>0</number></property>
+   <property name="bottomMargin"><number>0</number></property>
+
+   <!-- ── Header (QWidget 감싸기) ── -->
+   <item>
+    <widget class="QWidget" name="header">
+     <property name="minimumHeight"><number>52</number></property>
+     <property name="maximumHeight"><number>52</number></property>
+     <layout class="QHBoxLayout" name="headerLayout">
+      <property name="leftMargin"><number>20</number></property>
+      <property name="rightMargin"><number>20</number></property>
+      <property name="topMargin"><number>0</number></property>
+      <property name="bottomMargin"><number>0</number></property>
+      <item>
+       <widget class="QLabel" name="logoLabel">
+        <property name="text"><string>yes24</string></property>
+        <property name="minimumWidth"><number>60</number></property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation"><enum>Qt::Horizontal</enum></property>
+        <property name="sizeType"><enum>QSizePolicy::Expanding</enum></property>
+        <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="headerTitle">
+        <property name="text"><string>도서 수호자</string></property>
+        <property name="alignment"><set>Qt::AlignCenter</set></property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation"><enum>Qt::Horizontal</enum></property>
+        <property name="sizeType"><enum>QSizePolicy::Expanding</enum></property>
+        <property name="sizeHint" stdset="0"><size><width>0</width><height>0</height></size></property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="headerRight">
+        <property name="text"><string></string></property>
+        <property name="minimumWidth"><number>60</number></property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+
+   <!-- ── Search Area (QWidget 감싸기) ── -->
+   <item>
+    <widget class="QWidget" name="searchArea">
+     <property name="minimumHeight"><number>110</number></property>
+     <layout class="QVBoxLayout" name="searchLayout">
+      <property name="leftMargin"><number>20</number></property>
+      <property name="rightMargin"><number>20</number></property>
+      <property name="topMargin"><number>16</number></property>
+      <property name="bottomMargin"><number>16</number></property>
+      <property name="spacing"><number>6</number></property>
+      <item>
+       <widget class="QLabel" name="searchSubtitle">
+        <property name="text"><string>AI 도서 추천</string></property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="searchTitle">
+        <property name="text"><string>책을 추천해드릴까요?</string></property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="searchRowLayout">
+        <property name="spacing"><number>8</number></property>
+        <item>
+         <widget class="QLineEdit" name="searchInput">
+          <property name="placeholderText"><string>검색할 책 또는 키워드를 입력하세요.</string></property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="searchBtn">
+          <property name="text"><string>검색</string></property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+
+   <!-- ── Filter Card (QWidget 감싸기) ── -->
+   <item>
+    <layout class="QVBoxLayout">
+     <property name="leftMargin"><number>14</number></property>
+     <property name="rightMargin"><number>14</number></property>
+     <property name="topMargin"><number>12</number></property>
+     <property name="bottomMargin"><number>0</number></property>
+     <item>
+      <widget class="QWidget" name="filterCard">
+       <layout class="QVBoxLayout" name="filterCardLayout">
+        <property name="leftMargin"><number>14</number></property>
+        <property name="rightMargin"><number>14</number></property>
+        <property name="topMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>12</number></property>
+        <property name="spacing"><number>10</number></property>
+
+        <!-- 저자/출판사 -->
+        <item>
+         <layout class="QHBoxLayout">
+          <property name="spacing"><number>10</number></property>
+          <item>
+           <widget class="QLabel" name="authorLabel">
+            <property name="text"><string>저자/출판사</string></property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="authorInput">
+            <property name="placeholderText"><string>저자 또는 출판사를 입력하세요.</string></property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+
+        <!-- 국가 -->
+        <item>
+         <layout class="QHBoxLayout">
+          <property name="spacing"><number>10</number></property>
+          <item>
+           <widget class="QLabel" name="countryLabel">
+            <property name="text"><string>국가</string></property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="countryCombo">
+            <item><property name="text"><string>전체</string></property></item>
+            <item><property name="text"><string>국내</string></property></item>
+            <item><property name="text"><string>미국</string></property></item>
+            <item><property name="text"><string>영국</string></property></item>
+            <item><property name="text"><string>일본</string></property></item>
+            <item><property name="text"><string>프랑스</string></property></item>
+            <item><property name="text"><string>독일</string></property></item>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation"><enum>Qt::Horizontal</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+
+        <!-- 장르 -->
+        <item>
+         <layout class="QHBoxLayout">
+          <property name="spacing"><number>10</number></property>
+          <item>
+           <widget class="QLabel" name="genreLabel">
+            <property name="text"><string>장르</string></property>
+            <property name="alignment"><set>Qt::AlignTop</set></property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout">
+            <property name="spacing"><number>6</number></property>
+            <item><widget class="QCheckBox" name="chkMystery"><property name="text"><string>추리/미스터리</string></property></widget></item>
+            <item><widget class="QCheckBox" name="chkSF"><property name="text"><string>SF</string></property></widget></item>
+            <item><widget class="QCheckBox" name="chkRomance"><property name="text"><string>로맨스</string></property></widget></item>
+            <item><widget class="QCheckBox" name="chkHorror"><property name="text"><string>공포/스릴러</string></property></widget></item>
+            <item><widget class="QCheckBox" name="chkFantasy"><property name="text"><string>판타지</string></property></widget></item>
+            <item><widget class="QCheckBox" name="chkHistory"><property name="text"><string>역사</string></property></widget></item>
+            <item><widget class="QCheckBox" name="chkEtc"><property name="text"><string>기타</string></property></widget></item>
+            <item><spacer><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>10</width><height>10</height></size></property></spacer></item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+
+   <!-- ── Results ── -->
+   <item>
+    <layout class="QVBoxLayout">
+     <property name="leftMargin"><number>14</number></property>
+     <property name="rightMargin"><number>14</number></property>
+     <property name="topMargin"><number>10</number></property>
+     <property name="bottomMargin"><number>14</number></property>
+     <property name="spacing"><number>8</number></property>
+
+     <item>
+      <layout class="QHBoxLayout">
+       <item>
+        <widget class="QLabel" name="resultsLabel">
+         <property name="text"><string>검색 결과</string></property>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation"><enum>Qt::Horizontal</enum></property>
+         <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="resultCount">
+         <property name="text"><string></string></property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+
+     <!-- resultsBox (QWidget 감싸기) -->
+     <item>
+      <widget class="QWidget" name="resultsBox">
+       <property name="minimumHeight"><number>220</number></property>
+       <layout class="QVBoxLayout" name="resultsBoxLayout">
+        <property name="leftMargin"><number>12</number></property>
+        <property name="rightMargin"><number>12</number></property>
+        <property name="topMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>12</number></property>
+        <property name="spacing"><number>8</number></property>
+        <item>
+         <widget class="QLabel" name="emptyLabel">
+          <property name="text"><string>검색어를 입력하세요.</string></property>
+          <property name="alignment"><set>Qt::AlignCenter</set></property>
+          <property name="minimumHeight"><number>160</number></property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="bookScrollArea">
+          <property name="visible"><bool>false</bool></property>
+          <property name="widgetResizable"><bool>true</bool></property>
+          <widget class="QWidget" name="bookScrollContent">
+           <property name="geometry"><rect><x>0</x><y>0</y><width>440</width><height>180</height></rect></property>
+           <layout class="QVBoxLayout" name="bookListLayout">
+            <property name="spacing"><number>8</number></property>
+            <property name="leftMargin"><number>0</number></property>
+            <property name="topMargin"><number>0</number></property>
+            <property name="rightMargin"><number>0</number></property>
+            <property name="bottomMargin"><number>0</number></property>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <layout class="QHBoxLayout">
+       <item>
+        <spacer>
+         <property name="orientation"><enum>Qt::Horizontal</enum></property>
+         <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="actionBtn">
+         <property name="text"><string>✦  추천 검색</string></property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+
+    </layout>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

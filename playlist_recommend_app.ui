@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PlaylistRecommendDialog</class>
+ <widget class="QDialog" name="PlaylistRecommendDialog">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>420</width><height>560</height></rect>
+  </property>
+  <property name="windowTitle">
+   <string>플레이리스트 추천</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QDialog#PlaylistRecommendDialog {
+    background-color: #f4f6fa;
+}
+QWidget#dialogHeader {
+    background-color: #041242;
+}
+QLabel#headerSubtitle {
+    color: #66BEFF;
+    font-size: 11px;
+    background-color: transparent;
+}
+QLabel#headerTitle {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: transparent;
+}
+QWidget#bookSummaryCard {
+    background-color: #ffffff;
+    border: 1px solid #d8dce8;
+    border-radius: 8px;
+}
+QLabel#bookCover {
+    background-color: #0043FF;
+    border-radius: 4px;
+}
+QLabel#bookTitleLabel {
+    font-size: 14px;
+    font-weight: bold;
+    color: #111111;
+    background-color: transparent;
+}
+QLabel#bookAuthorLabel {
+    font-size: 12px;
+    color: #666666;
+    background-color: transparent;
+}
+QLabel#genreBadge {
+    font-size: 11px;
+    font-weight: bold;
+    color: #0043FF;
+    background-color: #deeeff;
+    border-radius: 10px;
+    padding: 2px 10px;
+}
+QLabel#sectionLabel {
+    font-size: 12px;
+    font-weight: bold;
+    color: #041242;
+    background-color: transparent;
+}
+QWidget#playlistCard {
+    background-color: #ffffff;
+    border: 1px solid #d8dce8;
+    border-radius: 8px;
+}
+QWidget#playlistCard:hover {
+    border: 1px solid #0080FF;
+}
+QLabel#playlistThumb, QLabel#playlistThumb2, QLabel#playlistThumb3 {
+    background-color: #EC1929;
+    border-radius: 6px;
+}
+QLabel#playlistTitle, QLabel#playlistTitle1, QLabel#playlistTitle2, QLabel#playlistTitle3 {
+    font-size: 13px;
+    font-weight: bold;
+    color: #111111;
+    background-color: transparent;
+}
+QLabel#playlistChannel, QLabel#playlistChannel1, QLabel#playlistChannel2, QLabel#playlistChannel3 {
+    font-size: 11px;
+    color: #888888;
+    background-color: transparent;
+}
+QLabel#playlistTag, QLabel#playlistTag1, QLabel#playlistTag2, QLabel#playlistTag3 {
+    font-size: 10px;
+    font-weight: bold;
+    color: #EC1929;
+    background-color: #ffe5e8;
+    border-radius: 9px;
+    padding: 2px 8px;
+}
+QPushButton#playBtn, QPushButton#playBtn1, QPushButton#playBtn2, QPushButton#playBtn3 {
+    background-color: #EC1929;
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    font-size: 12px;
+    font-weight: bold;
+    min-height: 28px;
+    min-width: 60px;
+}
+QPushButton#playBtn:hover, QPushButton#playBtn1:hover, QPushButton#playBtn2:hover, QPushButton#playBtn3:hover { background-color: #c41522; }
+QPushButton#closeBtn {
+    background-color: #ffffff;
+    color: #555555;
+    border: 1px solid #d0d5e0;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 36px;
+    min-width: 90px;
+}
+QPushButton#closeBtn:hover { background-color: #f0f2f6; }
+QPushButton#openYoutubeBtn {
+    background-color: #0080FF;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 36px;
+    min-width: 140px;
+    padding: 0 16px;
+}
+QPushButton#openYoutubeBtn:hover { background-color: #0066cc; }
+QScrollArea { border: none; background-color: transparent; }
+QScrollBar:vertical { width: 6px; background: transparent; }
+QScrollBar::handle:vertical { background: #d0d5e0; border-radius: 3px; min-height: 20px; }
+   </string>
+  </property>
+
+  <layout class="QVBoxLayout" name="rootLayout">
+   <property name="spacing"><number>0</number></property>
+   <property name="leftMargin"><number>0</number></property>
+   <property name="topMargin"><number>0</number></property>
+   <property name="rightMargin"><number>0</number></property>
+   <property name="bottomMargin"><number>0</number></property>
+
+   <!-- ── Header ── -->
+   <item>
+    <widget class="QWidget" name="dialogHeader">
+     <property name="minimumHeight"><number>80</number></property>
+     <layout class="QVBoxLayout" name="headerLayout">
+      <property name="leftMargin"><number>20</number></property>
+      <property name="rightMargin"><number>20</number></property>
+      <property name="topMargin"><number>14</number></property>
+      <property name="bottomMargin"><number>14</number></property>
+      <property name="spacing"><number>4</number></property>
+      <item>
+       <widget class="QLabel" name="headerSubtitle">
+        <property name="text"><string>도서 수호자 · 추천 플레이리스트</string></property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="headerTitle">
+        <property name="text"><string>이 책과 함께 들으면 좋은 음악</string></property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+
+   <!-- ── Body ── -->
+   <item>
+    <layout class="QVBoxLayout">
+     <property name="leftMargin"><number>16</number></property>
+     <property name="rightMargin"><number>16</number></property>
+     <property name="topMargin"><number>14</number></property>
+     <property name="bottomMargin"><number>14</number></property>
+     <property name="spacing"><number>12</number></property>
+
+     <!-- 선택한 책 정보 -->
+     <item>
+      <widget class="QWidget" name="bookSummaryCard">
+       <layout class="QHBoxLayout" name="bookSummaryLayout">
+        <property name="leftMargin"><number>12</number></property>
+        <property name="rightMargin"><number>12</number></property>
+        <property name="topMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>12</number></property>
+        <property name="spacing"><number>12</number></property>
+        <item>
+         <widget class="QLabel" name="bookCover">
+          <property name="minimumSize"><size><width>46</width><height>62</height></size></property>
+          <property name="maximumSize"><size><width>46</width><height>62</height></size></property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout">
+          <property name="spacing"><number>5</number></property>
+          <item>
+           <widget class="QLabel" name="bookTitleLabel">
+            <property name="text"><string>반지의 제왕</string></property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="bookAuthorLabel">
+            <property name="text"><string>J.R.R. 톨킨 / 씨앗을뿌리는사람</string></property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QLabel" name="genreBadge">
+              <property name="text"><string>판타지</string></property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation"><enum>Qt::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+
+     <!-- 섹션 라벨 -->
+     <item>
+      <widget class="QLabel" name="sectionLabel">
+       <property name="text"><string>유튜브 플레이리스트 추천</string></property>
+      </widget>
+     </item>
+
+     <!-- 플레이리스트 스크롤 영역 -->
+     <item>
+      <widget class="QScrollArea" name="playlistScrollArea">
+       <property name="widgetResizable"><bool>true</bool></property>
+       <widget class="QWidget" name="playlistScrollContent">
+        <property name="geometry"><rect><x>0</x><y>0</y><width>380</width><height>400</height></rect></property>
+        <layout class="QVBoxLayout" name="playlistListLayout">
+         <property name="spacing"><number>10</number></property>
+         <property name="leftMargin"><number>0</number></property>
+         <property name="topMargin"><number>0</number></property>
+         <property name="rightMargin"><number>0</number></property>
+         <property name="bottomMargin"><number>0</number></property>
+
+         <!-- Playlist Item 1 -->
+         <item>
+          <widget class="QWidget" name="playlistCard1">
+           <layout class="QHBoxLayout">
+            <property name="leftMargin"><number>10</number></property>
+            <property name="rightMargin"><number>10</number></property>
+            <property name="topMargin"><number>10</number></property>
+            <property name="bottomMargin"><number>10</number></property>
+            <property name="spacing"><number>12</number></property>
+            <item>
+             <widget class="QLabel" name="playlistThumb1">
+              <property name="minimumSize"><size><width>64</width><height>64</height></size></property>
+              <property name="maximumSize"><size><width>64</width><height>64</height></size></property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout">
+              <property name="spacing"><number>4</number></property>
+              <item>
+               <widget class="QLabel" name="playlistTitle1">
+                <property name="text"><string>판타지 세계관 몰입 OST 모음</string></property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="playlistChannel1">
+                <property name="text"><string>Epic Fantasy Music · 재생목록 32곡</string></property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="playlistTag1">
+                <property name="text"><string>#판타지</string></property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="playBtn1">
+              <property name="text"><string>▶ 재생</string></property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+
+         <!-- Playlist Item 2 -->
+         <item>
+          <widget class="QWidget" name="playlistCard2">
+           <layout class="QHBoxLayout">
+            <property name="leftMargin"><number>10</number></property>
+            <property name="rightMargin"><number>10</number></property>
+            <property name="topMargin"><number>10</number></property>
+            <property name="bottomMargin"><number>10</number></property>
+            <property name="spacing"><number>12</number></property>
+            <item>
+             <widget class="QLabel" name="playlistThumb2">
+              <property name="minimumSize"><size><width>64</width><height>64</height></size></property>
+              <property name="maximumSize"><size><width>64</width><height>64</height></size></property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout">
+              <property name="spacing"><number>4</number></property>
+              <item>
+               <widget class="QLabel" name="playlistTitle2">
+                <property name="text"><string>중세 분위기 켈틱 음악 모음</string></property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="playlistChannel2">
+                <property name="text"><string>Celtic Sounds · 재생목록 21곡</string></property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="playlistTag2">
+                <property name="text"><string>#반지의제왕</string></property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="playBtn2">
+              <property name="text"><string>▶ 재생</string></property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+
+         <!-- Playlist Item 3 -->
+         <item>
+          <widget class="QWidget" name="playlistCard3">
+           <layout class="QHBoxLayout">
+            <property name="leftMargin"><number>10</number></property>
+            <property name="rightMargin"><number>10</number></property>
+            <property name="topMargin"><number>10</number></property>
+            <property name="bottomMargin"><number>10</number></property>
+            <property name="spacing"><number>12</number></property>
+            <item>
+             <widget class="QLabel" name="playlistThumb3">
+              <property name="minimumSize"><size><width>64</width><height>64</height></size></property>
+              <property name="maximumSize"><size><width>64</width><height>64</height></size></property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout">
+              <property name="spacing"><number>4</number></property>
+              <item>
+               <widget class="QLabel" name="playlistTitle3">
+                <property name="text"><string>독서할 때 듣는 잔잔한 오케스트라</string></property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="playlistChannel3">
+                <property name="text"><string>Reading BGM · 재생목록 18곡</string></property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="playlistTag3">
+                <property name="text"><string>#독서BGM</string></property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="playBtn3">
+              <property name="text"><string>▶ 재생</string></property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+
+        </layout>
+       </widget>
+      </widget>
+     </item>
+
+     <!-- 하단 버튼 -->
+     <item>
+      <layout class="QHBoxLayout" name="footerLayout">
+       <item>
+        <widget class="QPushButton" name="closeBtn">
+         <property name="text"><string>닫기</string></property>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation"><enum>Qt::Horizontal</enum></property>
+         <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="openYoutubeBtn">
+         <property name="text"><string>YouTube에서 더 보기</string></property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+
+    </layout>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
