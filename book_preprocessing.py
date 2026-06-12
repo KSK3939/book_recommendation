@@ -53,6 +53,33 @@ def tokenize_text(text):
 
     return ' '.join(words)
 
+def tokenize_title(text):
+
+    text = str(text)
+
+    # 한글, 영어, 숫자만 남김
+    text = re.sub('[^가-힣a-zA-Z0-9]', ' ', text)
+
+    # 형태소 분석
+    tokened_text = okt.pos(text, stem=True)
+
+    df_token = pd.DataFrame(tokened_text, columns=['word', 'class'])
+
+    # 사용할 품사 선택
+    df_token = df_token[
+        (df_token['class'] == 'Noun') |
+        (df_token['class'] == 'Verb') |
+        (df_token['class'] == 'Adjective') |
+        (df_token['class'] == 'Alpha') |
+        (df_token['class'] == 'Number')
+    ]
+
+    words = []
+
+    for word in df_token['word']:
+        words.append(word)
+
+    return ' '.join(words)
 
 # =========================
 # 저자 전처리 함수
@@ -94,7 +121,7 @@ def tokenize_genre(genre):
 # =========================
 # 컬럼별 전처리 적용
 # =========================
-df['상품명'] = df['상품명'].apply(tokenize_text)
+df['상품명'] = df['상품명'].apply(tokenize_title)
 df['저자'] = df['저자'].apply(tokenize_author)
 df['장르'] = df['장르'].apply(tokenize_genre)
 df['설명'] = df['설명'].apply(tokenize_text)
@@ -115,6 +142,8 @@ df = df[
     ]
 ]
 
+df = df[df['제목'] != '파닥파닥']
+df.reset_index(drop=True, inplace=True)
 
 # =========================
 # 저장

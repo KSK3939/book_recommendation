@@ -9,9 +9,9 @@ font_name = font_manager.FontProperties(fname = font_path).get_name()
 plt.rc('font', family = 'NanumBarunGothic')
 
 df = pd.read_csv('./data/final_merge_preprocessed.csv')
-book_index = 4335
-words = df.iloc[book_index, 1].split()
-print(df.iloc[book_index, 0])
+book_index = 4397
+words = str(df.loc[book_index, '설명']).split()
+print(df.loc[book_index, '제목'])
 
 worddict = collections.Counter(words)
 worddict = dict(worddict)
