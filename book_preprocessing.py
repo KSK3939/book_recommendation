@@ -143,7 +143,19 @@ df = df[
 ]
 
 df = df[df['제목'] != '파닥파닥']
+df.drop_duplicates(subset=['제목'], keep='first', inplace=True)
+
+# 기존 index 컬럼이 있으면 제거
+if 'index' in df.columns:
+    df.drop(columns=['index'], inplace=True)
+
 df.reset_index(drop=True, inplace=True)
+
+# 1부터 시작하는 index 컬럼 추가
+df['index'] = range(1, len(df) + 1)
+
+cols = ['index'] + [col for col in df.columns if col != 'index']
+df = df[cols]
 
 # =========================
 # 저장
