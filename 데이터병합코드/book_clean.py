@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_csv('data/yes24_steadyseller_장르통합.csv')
+df = pd.read_csv('../data/yes24_steadyseller_장르통합.csv')
 df = df[['ISBN','장르']]
 df['ISBN'] = df['ISBN'].astype('Int64')
 
