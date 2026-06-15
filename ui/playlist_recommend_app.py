@@ -21,8 +21,8 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt
 
-PLAYLIST_CSV = "../playlist_data/playlist_all.csv"
-# PLAYLIST_CSV = "../playlist_data/playlist_crawl.csv.csv"
+# PLAYLIST_CSV = "../playlist_data/playlist_all.csv"
+PLAYLIST_CSV = "../playlist_data/playlist_crawl.csv"
 
 
 # playlist_all.csv genre 값 ↔ 책 장르 매핑
